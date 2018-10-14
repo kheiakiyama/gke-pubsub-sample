@@ -3,7 +3,6 @@ require('dotenv').config()
 // Imports the Google Cloud client library
 const PubSub = require('@google-cloud/pubsub');
 
-// Your Google Cloud Platform project ID
 const topicName = 'sample';
 
 // Instantiates a client
