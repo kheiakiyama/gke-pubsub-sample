@@ -9,8 +9,18 @@ spec:
       labels:
         deployment: hello
     spec:
+      volumes:
+      - name: google-cloud-key-subscriber
+        secret:
+          secretName: subscriber-key
       containers:
       - name: the-container
-        image: gcr.io/gcp-study-192807/github-kheiakiyama-gke-pubsub-sample-subscriber@master
+        image: gcr.io/gcp-study-192807/github-kheiakiyama-gke-pubsub-sample-subscriber:master
+        volumeMounts:
+        - name: google-cloud-key-subscriber
+          mountPath: /var/secrets/google
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/key.json
         ports:
         - containerPort: 3000
