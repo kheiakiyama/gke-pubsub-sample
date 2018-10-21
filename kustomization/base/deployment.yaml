@@ -16,6 +16,7 @@ spec:
       containers:
       - name: the-container
         image: gcr.io/gcp-study-192807/github-kheiakiyama-gke-pubsub-sample-subscriber:master
+        imagePullPolicy: Always
         volumeMounts:
         - name: google-cloud-key-subscriber
           mountPath: /var/secrets/google

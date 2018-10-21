@@ -15,6 +15,7 @@ spec:
           containers:
           - name: hello
             image: gcr.io/gcp-study-192807/github-kheiakiyama-gke-pubsub-sample-scheduled-job:master
+            imagePullPolicy: Always
             volumeMounts:
             - name: google-cloud-key-scheduled-job
               mountPath: /var/secrets/google
