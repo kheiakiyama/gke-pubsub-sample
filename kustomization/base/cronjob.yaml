@@ -1,0 +1,24 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: the-job
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+          - name: google-cloud-key-scheduled-job
+            secret:
+              secretName: scheduled-job-key
+          containers:
+          - name: hello
+            image: gcr.io/gcp-study-192807/github-kheiakiyama-gke-pubsub-sample-scheduled-job:master
+            volumeMounts:
+            - name: google-cloud-key-scheduled-job
+              mountPath: /var/secrets/google
+            env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/key.json
+          restartPolicy: OnFailure
