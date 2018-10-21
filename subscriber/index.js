@@ -72,7 +72,13 @@ require('dotenv').config()
 const topicName = 'sample';
 const subscriptionName = 'sample';
 //createSubscription(topicName, subscriptionName);
-listenForMessages(subscriptionName, 10);
+
+function listen() {
+  console.log("listening...");
+  listenForMessages(subscriptionName, 10);
+  setTimeout(() => { listen() }, 60000);
+}
+listen();
 
 const http = require('http');
 
